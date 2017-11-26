@@ -45,6 +45,20 @@ public:
 		// now that we have all the required data, set the vertex buffers and its attribute pointers.
 		setupMesh();
 	}
+    
+    Mesh(BasicVertex * _vertices, uint16_t vertexCount, uint32_t * _indices, uint16_t indexCount){
+        
+        for ( uint16_t i = 0 ; i < vertexCount ; i++){
+             this->vertices.push_back(_vertices[i]);
+        }
+        
+        for ( uint16_t i = 0 ; i < indexCount ; i++){
+            this->indices.push_back(_indices[i]);
+        }
+        
+        setupMesh();
+        
+    }
 
 	// render the mesh
 	void Draw(Shader shader)

@@ -5,7 +5,7 @@
 //  Created by Sravan Karuturi on 10/24/17.
 //
 
-#pragma once
+// #pragma once
 #include <stdio.h>
 #include <iostream>
 #include "Game.h"
@@ -155,19 +155,29 @@ void Game::InitScene()
 
 	int vertexSize = 8;
 
-	int pointsSize = vertexSize * sizeof(BasicVertex);
+	// int pointsSize = vertexSize * sizeof(BasicVertex);
 
-	// BasicVertex * vertexData = new BasicVertex[4];
+    // BasicVertex * vertexData = new BasicVertex[4];
 
-	std::vector<BasicVertex> vertexData = std::vector<BasicVertex>();
-	vertexData.push_back(BasicVertex(-3.f, -3.f, 3.f, 1.f, 0.f, 0.f, 0.f, 1.f));
-	vertexData.push_back(BasicVertex(3.f, -3.f, 3.f, 0.f, 1.f, 0.f, 1.f, 1.f));
-	vertexData.push_back(BasicVertex(-3.f, 3.f, 3.f, 0.f, 0.f, 1.f, 0.f, 0.f));
-	vertexData.push_back(BasicVertex(3.f, 3.f, 3.f, 0.5f, 0.5f, 0.5f, 1.f, 0.f));
-	vertexData.push_back(BasicVertex(-3.f, -3.f, -3.f, 1.f, 0.f, 1.f, 1.f, 0.f));
-	vertexData.push_back(BasicVertex(3.f, -3.f, -3.f, 0.f, 1.f, 1.f, 0.f, 0.f));
-	vertexData.push_back(BasicVertex(-3.f, 3.f, -3.f, 0.f, 0.f, 0.f, 1.f, 1.f));
-	vertexData.push_back(BasicVertex(3.f, 3.f, -3.f, 0.5f, 0.5f, 0.5f, 0.f, 1.f));
+    std::vector<BasicVertex> vertexData = std::vector<BasicVertex>();
+    vertexData.push_back(BasicVertex(-3.f, -3.f, 3.f, 1.f, 0.f, 0.f, 0.f, 1.f));
+    vertexData.push_back(BasicVertex(3.f, -3.f, 3.f, 0.f, 1.f, 0.f, 1.f, 1.f));
+    vertexData.push_back(BasicVertex(-3.f, 3.f, 3.f, 0.f, 0.f, 1.f, 0.f, 0.f));
+    vertexData.push_back(BasicVertex(3.f, 3.f, 3.f, 0.5f, 0.5f, 0.5f, 1.f, 0.f));
+    vertexData.push_back(BasicVertex(-3.f, -3.f, -3.f, 1.f, 0.f, 1.f, 1.f, 0.f));
+    vertexData.push_back(BasicVertex(3.f, -3.f, -3.f, 0.f, 1.f, 1.f, 0.f, 0.f));
+    vertexData.push_back(BasicVertex(-3.f, 3.f, -3.f, 0.f, 0.f, 0.f, 1.f, 1.f));
+    vertexData.push_back(BasicVertex(3.f, 3.f, -3.f, 0.5f, 0.5f, 0.5f, 0.f, 1.f));
+    
+    BasicVertex * vertexData2 = new BasicVertex[8];
+    vertexData2[0] = BasicVertex(-3.f, -3.f, 3.f, 1.f, 0.f, 0.f, 0.f, 1.f);
+    vertexData2[1] = BasicVertex(3.f, -3.f, 3.f, 0.f, 1.f, 0.f, 1.f, 1.f);
+    vertexData2[2] = BasicVertex(-3.f, 3.f, 3.f, 0.f, 0.f, 1.f, 0.f, 0.f);
+    vertexData2[3] = BasicVertex(3.f, 3.f, 3.f, 0.5f, 0.5f, 0.5f, 1.f, 0.f);
+    vertexData2[4] = BasicVertex(-3.f, -3.f, -3.f, 1.f, 0.f, 1.f, 1.f, 0.f);
+    vertexData2[5] = BasicVertex(3.f, -3.f, -3.f, 0.f, 1.f, 1.f, 0.f, 0.f);
+    vertexData2[6] = BasicVertex(-3.f, 3.f, -3.f, 0.f, 0.f, 0.f, 1.f, 1.f);
+    vertexData2[7] = BasicVertex(3.f, 3.f, -3.f, 0.5f, 0.5f, 0.5f, 0.f, 1.f);
 
 	std::vector<uint32_t> indexData = std::vector<uint32_t>();
 	indexData.push_back(0);
@@ -211,8 +221,13 @@ void Game::InitScene()
 	indexData.push_back(0);
 	indexData.push_back(1);
 	indexData.push_back(5);
+    
+    uint32_t * indexData2 = new uint32_t[36]{
+        0, 1, 2, 1, 3, 2, 1, 5, 7, 7, 3, 1, 2, 6, 4, 4, 0, 2, 4, 5, 7, 7, 6, 4, 7, 3, 2, 2, 6, 7, 5, 4, 0, 0, 1, 5
+    };
 
-	Mesh * m = new Mesh(vertexData,indexData);
+	Mesh * m = new Mesh(vertexData2,8 ,indexData2, 36);
+    // Mesh * m = new Mesh(vertexData, indexData);
 
 	// meshes.push_back(m);
 
