@@ -105,8 +105,8 @@ public:
         blockShader.Init("../../PCSource/Source/Shaders/platform.vs", "../../PCSource/Source/Shaders/platform.frag");
 
 #else
-        playerShader.Init("../Source/Shaders/core.vs", "../Source/Shaders/core.frag");
-        blockShader.Init("../Source/Shaders/platform.vs", "../Source/Shaders/platform.frag");
+        playerShader.Init("../PCSource/Source/Shaders/core.vs", "../PCSource/Source/Shaders/core.frag");
+        blockShader.Init("../PCSource/Source/Shaders/platform.vs", "../PCSource/Source/Shaders/platform.frag");
 
 #endif
         
