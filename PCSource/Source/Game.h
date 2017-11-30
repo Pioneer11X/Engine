@@ -16,8 +16,6 @@ class Game {
     
 	GLFWwindow * window;
 
-	std::vector<Mesh *> meshes;
-
 	void CreateMeshes();
     
     void Draw();
@@ -59,7 +57,7 @@ public:
     
     void handleUserEvents();
     
-    ~Game() { };
+    ~Game();
     
 };
 

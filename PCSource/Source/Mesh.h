@@ -45,6 +45,10 @@ public:
 		// now that we have all the required data, set the vertex buffers and its attribute pointers.
 		setupMesh();
 	}
+
+	~Mesh() {
+		// Delete the stuff..
+	}
     
     Mesh(BasicVertex * _vertices, uint16_t vertexCount, uint32_t * _indices, uint16_t indexCount){
         
@@ -57,7 +61,10 @@ public:
         }
         
         setupMesh();
-        
+        // We no longer need the input vertices and indices pointer.
+		// Delete them.
+		delete _vertices;
+		delete _indices;
     }
 
 	// render the mesh
@@ -102,10 +109,10 @@ private:
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(BasicVertex), (void*)0);
 		// vertex normals
 		glEnableVertexAttribArray(1);
-		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(BasicVertex), (void*)offsetof(BasicVertex, r));
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(BasicVertex), (void*)offsetof(BasicVertex, normal.x));
 		// vertex texture coords
 		glEnableVertexAttribArray(2);
-		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(BasicVertex), (void*)offsetof(BasicVertex, u));
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(BasicVertex), (void*)offsetof(BasicVertex, uv.x));
 
 		glBindVertexArray(0);
 	}

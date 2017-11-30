@@ -160,14 +160,14 @@ void Game::InitScene()
     // BasicVertex * vertexData = new BasicVertex[4];
 
     std::vector<BasicVertex> vertexData = std::vector<BasicVertex>();
-    vertexData.push_back(BasicVertex(-3.f, -3.f, 3.f, 1.f, 0.f, 0.f, 0.f, 1.f));
-    vertexData.push_back(BasicVertex(3.f, -3.f, 3.f, 0.f, 1.f, 0.f, 1.f, 1.f));
-    vertexData.push_back(BasicVertex(-3.f, 3.f, 3.f, 0.f, 0.f, 1.f, 0.f, 0.f));
-    vertexData.push_back(BasicVertex(3.f, 3.f, 3.f, 0.5f, 0.5f, 0.5f, 1.f, 0.f));
-    vertexData.push_back(BasicVertex(-3.f, -3.f, -3.f, 1.f, 0.f, 1.f, 1.f, 0.f));
-    vertexData.push_back(BasicVertex(3.f, -3.f, -3.f, 0.f, 1.f, 1.f, 0.f, 0.f));
-    vertexData.push_back(BasicVertex(-3.f, 3.f, -3.f, 0.f, 0.f, 0.f, 1.f, 1.f));
-    vertexData.push_back(BasicVertex(3.f, 3.f, -3.f, 0.5f, 0.5f, 0.5f, 0.f, 1.f));
+    vertexData.push_back(BasicVertex(vec3(-3.f, -3.f, 3.f), vec3(1.f, 0.f, 0.f), vec2(0.f, 1.f)));
+    vertexData.push_back(BasicVertex(vec3(3.f, -3.f, 3.f), vec3(0.f, 1.f, 0.f), vec2(1.f, 1.f)));
+    vertexData.push_back(BasicVertex(vec3(-3.f, 3.f, 3.f	), vec3(0.f, 0.f, 1.f		), vec2(0.f, 0.f)));
+    vertexData.push_back(BasicVertex(vec3(3.f, 3.f, 3.f		), vec3(0.5f, 0.5f, 0.5f	), vec2(1.f, 0.f)));
+    vertexData.push_back(BasicVertex(vec3(-3.f, -3.f, -3.f	), vec3(1.f, 0.f, 1.f		), vec2(1.f, 0.f)));
+    vertexData.push_back(BasicVertex(vec3(3.f, -3.f, -3.f	), vec3(0.f, 1.f, 1.f		), vec2(0.f, 0.f)));
+    vertexData.push_back(BasicVertex(vec3(-3.f, 3.f, -3.f	), vec3(0.f, 0.f, 0.f		), vec2(1.f, 1.f)));
+    vertexData.push_back(BasicVertex(vec3(3.f, 3.f, -3.f	), vec3(0.5f, 0.5f, 0.5f	), vec2(0.f, 1.f)));
     
     BasicVertex * vertexData2 = new BasicVertex[8];
     vertexData2[0] = BasicVertex(-3.f, -3.f, 3.f, 1.f, 0.f, 0.f, 0.f, 1.f);
@@ -250,27 +250,16 @@ void Game::handleUserEvents(){
     
 }
 
+Game::~Game()
+{
+}
+
 void Game::Cleanup(){
 
     // Terminate GLFW, clearing any resources allocated by GLFW.
     glfwTerminate( );
 
-	// delete playerEntity;
-
-	//for (std::vector<Entity *>::iterator it = platformEntites.begin(); it != platformEntites.end(); it++) {
-	//	delete (*it);
-	//}
-
-	for (std::vector<Mesh *>::iterator it = meshes.begin(); it != meshes.end(); it++) {
-		delete (*it);
-	}
-
-	//if (playerMesh)
-	//	delete playerMesh;
-
-	//if (blockMesh)
-	//	delete blockMesh;
-    
-    //    return EXIT_SUCCESS;
+	delete scene;
+	delete renderer;
     
 }
