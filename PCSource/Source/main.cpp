@@ -9,6 +9,17 @@
 #include <crtdbg.h>
 #endif
 
+/*
+
+Console Class -- Doubts??
+
+Do the atomic operations work wel with the microsoft compilers?
+
+MISD -- Where is it useful?
+
+
+*/
+
 // The MAIN function, from here we start the application and run the game loop
 int main( )
 {

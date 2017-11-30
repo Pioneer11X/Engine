@@ -74,6 +74,33 @@ void Game::processInput(GLFWwindow * window)
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
 
+	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
+		scene->entities[0]->rotation.x -= 0.1;
+		scene->entities[0]->dirty = true;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
+		scene->entities[0]->RotateY(50);
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
+		scene->entities[0]->RotateZ(50);
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
+		scene->entities[0]->rotation.x += 0.1;
+		scene->entities[0]->dirty = true;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
+		scene->entities[0]->RotateY(-50);
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) {
+		scene->entities[0]->RotateZ(-50);
+	}
+		
+
 	joyStickNumber = glfwJoystickPresent(GLFW_JOYSTICK_1);
 
 	// std::cout << joyStickNumber << std::endl;
@@ -151,96 +178,22 @@ void Game::processInput(GLFWwindow * window)
 void Game::InitScene()
 {
 
-	// Allocate the vertex buffer memory
-
-	int vertexSize = 8;
-
-	// int pointsSize = vertexSize * sizeof(BasicVertex);
-
-    // BasicVertex * vertexData = new BasicVertex[4];
-
-    std::vector<BasicVertex> vertexData = std::vector<BasicVertex>();
-    vertexData.push_back(BasicVertex(vec3(-3.f, -3.f, 3.f), vec3(1.f, 0.f, 0.f), vec2(0.f, 1.f)));
-    vertexData.push_back(BasicVertex(vec3(3.f, -3.f, 3.f), vec3(0.f, 1.f, 0.f), vec2(1.f, 1.f)));
-    vertexData.push_back(BasicVertex(vec3(-3.f, 3.f, 3.f	), vec3(0.f, 0.f, 1.f		), vec2(0.f, 0.f)));
-    vertexData.push_back(BasicVertex(vec3(3.f, 3.f, 3.f		), vec3(0.5f, 0.5f, 0.5f	), vec2(1.f, 0.f)));
-    vertexData.push_back(BasicVertex(vec3(-3.f, -3.f, -3.f	), vec3(1.f, 0.f, 1.f		), vec2(1.f, 0.f)));
-    vertexData.push_back(BasicVertex(vec3(3.f, -3.f, -3.f	), vec3(0.f, 1.f, 1.f		), vec2(0.f, 0.f)));
-    vertexData.push_back(BasicVertex(vec3(-3.f, 3.f, -3.f	), vec3(0.f, 0.f, 0.f		), vec2(1.f, 1.f)));
-    vertexData.push_back(BasicVertex(vec3(3.f, 3.f, -3.f	), vec3(0.5f, 0.5f, 0.5f	), vec2(0.f, 1.f)));
-    
-    BasicVertex * vertexData2 = new BasicVertex[8];
-    vertexData2[0] = BasicVertex(-3.f, -3.f, 3.f, 1.f, 0.f, 0.f, 0.f, 1.f);
-    vertexData2[1] = BasicVertex(3.f, -3.f, 3.f, 0.f, 1.f, 0.f, 1.f, 1.f);
-    vertexData2[2] = BasicVertex(-3.f, 3.f, 3.f, 0.f, 0.f, 1.f, 0.f, 0.f);
-    vertexData2[3] = BasicVertex(3.f, 3.f, 3.f, 0.5f, 0.5f, 0.5f, 1.f, 0.f);
-    vertexData2[4] = BasicVertex(-3.f, -3.f, -3.f, 1.f, 0.f, 1.f, 1.f, 0.f);
-    vertexData2[5] = BasicVertex(3.f, -3.f, -3.f, 0.f, 1.f, 1.f, 0.f, 0.f);
-    vertexData2[6] = BasicVertex(-3.f, 3.f, -3.f, 0.f, 0.f, 0.f, 1.f, 1.f);
-    vertexData2[7] = BasicVertex(3.f, 3.f, -3.f, 0.5f, 0.5f, 0.5f, 0.f, 1.f);
-
-	std::vector<uint32_t> indexData = std::vector<uint32_t>();
-	indexData.push_back(0);
-	indexData.push_back(1);
-	indexData.push_back(2);
-	indexData.push_back(1);
-	indexData.push_back(3);
-	indexData.push_back(2);
-
-	indexData.push_back(1);
-	indexData.push_back(5);
-	indexData.push_back(7);
-	indexData.push_back(7);
-	indexData.push_back(3);
-	indexData.push_back(1);
-
-	indexData.push_back(2);
-	indexData.push_back(6);
-	indexData.push_back(4);
-	indexData.push_back(4);
-	indexData.push_back(0);
-	indexData.push_back(2);
-
-	indexData.push_back(4);
-	indexData.push_back(5);
-	indexData.push_back(7);
-	indexData.push_back(7);
-	indexData.push_back(6);
-	indexData.push_back(4);
-
-	indexData.push_back(7);
-	indexData.push_back(3);
-	indexData.push_back(2);
-	indexData.push_back(2);
-	indexData.push_back(6);
-	indexData.push_back(7);
-
-	indexData.push_back(5);
-	indexData.push_back(4);
-	indexData.push_back(0);
-	indexData.push_back(0);
-	indexData.push_back(1);
-	indexData.push_back(5);
-    
-    uint32_t * indexData2 = new uint32_t[36]{
-        0, 1, 2, 1, 3, 2, 1, 5, 7, 7, 3, 1, 2, 6, 4, 4, 0, 2, 4, 5, 7, 7, 6, 4, 7, 3, 2, 2, 6, 7, 5, 4, 0, 0, 1, 5
-    };
-
-	Mesh * m = new Mesh(vertexData2,8 ,indexData2, 36);
-    // Mesh * m = new Mesh(vertexData, indexData);
-
-	// meshes.push_back(m);
+	// Mesh * m = new Mesh(vertexData2,8 ,indexData2, 36);
+	Mesh * m = new Mesh("cube.obj");
+	Mesh * planeMesh = new Mesh("plane.obj");
 
 	// Entity * e = new Entity(m, vec3(10.0f, 0.0f, -35.0f), vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f));
-	Entity * e2 = new Entity(m, vec3(-1.0f, 0.0f, -35.f), vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f));
+	Entity * e = new Entity(m, vec3(-1.0f, 0.0f, -35.f), vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f));
+	Entity * planeEnt = new Entity(planeMesh, vec3(-1.0f, -5.0f, -35.f), vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f));
 
 	std::vector<Entity*> entities;
 	std::vector<Mesh*> meshes;
 
-	// entities.push_back(e);
-	entities.push_back(e2);
+	entities.push_back(e);
+	entities.push_back(planeEnt);
 
 	meshes.push_back(m);
+	meshes.push_back(planeMesh);
 
 	this->scene = new Scene(entities, meshes);
 

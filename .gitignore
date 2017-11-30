@@ -1,3 +1,5 @@
 
 MacBuild/
 PCBuild/
+*.log
+*.log
