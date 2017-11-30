@@ -75,8 +75,7 @@ void Game::processInput(GLFWwindow * window)
 		glfwSetWindowShouldClose(window, true);
 
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-		scene->entities[0]->rotation.x -= 0.1;
-		scene->entities[0]->dirty = true;
+		gameCamera.Position.z += 1;
 	}
 
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
@@ -159,6 +158,8 @@ void Game::processInput(GLFWwindow * window)
 
 
 #endif
+
+		
         
 #ifdef __APPLE__
         scene->entities[0]->MoveUp( -1.0f * axes[1]);
@@ -172,17 +173,15 @@ void Game::processInput(GLFWwindow * window)
 
 
 	}
-	
+
 }
 
 void Game::InitScene()
 {
 
-	// Mesh * m = new Mesh(vertexData2,8 ,indexData2, 36);
 	Mesh * m = new Mesh("cube.obj");
 	Mesh * planeMesh = new Mesh("plane.obj");
 
-	// Entity * e = new Entity(m, vec3(10.0f, 0.0f, -35.0f), vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f));
 	Entity * e = new Entity(m, vec3(-1.0f, 0.0f, -35.f), vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f));
 	Entity * planeEnt = new Entity(planeMesh, vec3(-1.0f, -5.0f, -35.f), vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f));
 
@@ -200,7 +199,7 @@ void Game::InitScene()
 }
 
 void Game::handleUserEvents(){
-    
+    // TODO: Populate this with the GLFW commands.
 }
 
 Game::~Game()

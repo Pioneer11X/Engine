@@ -129,7 +129,7 @@ public:
 
 
 		for (std::vector<Entity *>::iterator it = glScene->entities.begin(); it != glScene->entities.end(); it++) {
-			drawEntity(*it, blockShader);
+			drawEntity(*it, playerShader);
 		}
 
 		glfwSwapBuffers(window);
@@ -144,6 +144,7 @@ public:
 		_shader.setMat4("transform", e->worldMatrix);
 		_shader.setMat4("projection", glm::perspective(glm::radians(camera.Zoom), float(ScreenHeight / ScreenWidth), 0.1f, 100.0f));
 		_shader.setMat4("view", camera.GetViewMatrix());
+		_shader.setVec3("lightPos1", vec3(10.f, 1.f, -5.f));
 		
 		// Per Entity Draw Call.
 		for (std::vector<Mesh *>::iterator it = e->meshes.begin(); it != e->meshes.end(); it++) {
