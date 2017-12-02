@@ -25,6 +25,7 @@
 #include <iostream>
 #include <vector>
 #include "BasicVertex.h"
+#include <stdio.h>
 
 using namespace std;
 
@@ -68,8 +69,10 @@ public:
 		
 		std::ifstream obj(_fileName);
 
-		if (!obj.is_open())
+        if (!obj.is_open()){
+            std::cout << "Cannot open " << _fileName << ".." << std::endl;
 			return;
+        }
 
 		std::vector<vec3> positions;
 		std::vector<vec3> normals;
@@ -88,7 +91,7 @@ public:
 			{
 				// Read the 3 numbers directly into an XMFLOAT3
 				vec3 norm;
-				sscanf_s(
+				sscanf(
 					chars,
 					"vn %f %f %f",
 					&norm.x, &norm.y, &norm.z);
@@ -100,7 +103,7 @@ public:
 			{
 				// Read the 2 numbers directly into an XMFLOAT2
 				vec2 uv;
-				sscanf_s(
+				sscanf(
 					chars,
 					"vt %f %f",
 					&uv.x, &uv.y);
@@ -112,7 +115,7 @@ public:
 			{
 				// Read the 3 numbers directly into an XMFLOAT3
 				vec3 pos;
-				sscanf_s(
+				sscanf(
 					chars,
 					"v %f %f %f",
 					&pos.x, &pos.y, &pos.z);
@@ -124,7 +127,7 @@ public:
 			{
 				// Read the face indices into an array
 				unsigned int i[12];
-				int facesRead = sscanf_s(
+				int facesRead = sscanf(
 					chars,
 					"f %d/%d/%d %d/%d/%d %d/%d/%d %d/%d/%d",
 					&i[0], &i[1], &i[2],
