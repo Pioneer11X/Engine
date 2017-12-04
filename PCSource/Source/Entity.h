@@ -7,8 +7,7 @@
 
 #include <vector>
 #include "Camera.h"
-
-#include "Physics.h"
+#include "PhysicsObject.h"
 
 using namespace std;
 using namespace glm;
@@ -30,6 +29,8 @@ public:
 	vec3 rotation;
 	vec3 scaling;
 
+	PhysicsObject * pbody;
+
 	bool dirty;
 
 public:
@@ -37,6 +38,8 @@ public:
 	Entity(std::vector<Mesh *> _meshes, vec3 _trans, vec3 _rot, vec3 _scal);
 	Entity(Mesh * _mesh, vec3 _trans, vec3 _rot, vec3 _scal);
 	~Entity();
+
+	void AddPhysicsBody(b2World * _world, bool _isDynamic);
 
 	void MoveRight(float factor);
 	void MoveUp(float factor);

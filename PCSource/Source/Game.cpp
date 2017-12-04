@@ -185,6 +185,9 @@ void Game::InitScene()
 	Entity * e = new Entity(m, vec3(-1.0f, 0.0f, -35.f), vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f));
 	Entity * planeEnt = new Entity(planeMesh, vec3(-1.0f, -5.0f, -35.f), vec3(0.0f, 0.0f, 0.0f), vec3(1.0f, 1.0f, 1.0f));
 
+	e->AddPhysicsBody(&world, true);
+	planeEnt->AddPhysicsBody(&world, false);
+
 	std::vector<Entity*> entities;
 	std::vector<Mesh*> meshes;
 

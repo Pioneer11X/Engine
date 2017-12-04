@@ -12,6 +12,9 @@
 #include "RenderManager.h"
 #include "Scene.h"
 
+static b2Vec2 gravity(0.0f, -10.0f);
+static b2World world(gravity);
+
 class Game {
     
 	GLFWwindow * window;

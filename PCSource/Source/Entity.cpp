@@ -10,21 +10,6 @@ Entity::Entity(std::vector<Mesh *> _meshes, vec3 _trans, vec3 _rot, vec3 _scal)
 	rotation = _rot;
 	scaling = _scal;
 
-	
-	///*Physics Stuff*/
-
-	//b2BodyDef bodyDef;
-	//if (isDynamic) {
-	//	bodyDef.type = b2_dynamicBody;
-	//}
-	//bodyDef.position.Set(translation.x * 100.0f, translation.y * 100.0f);
-
-	//physicsBody = (*world).CreateBody(&bodyDef);
-
-	///*Physics Stuff End*/
-
-
-
 	worldMatrix = glm::mat4(1.0f);
 
 	dirty = true;
@@ -43,24 +28,20 @@ Entity::Entity(Mesh * _mesh, vec3 _trans, vec3 _rot, vec3 _scal)
 	rotation = _rot;
 	scaling = _scal;
 
-	///*Physics Stuff*/
-
-	//b2BodyDef bodyDef;
-	//if (isDynamic) {
-	//	bodyDef.type = b2_dynamicBody;
-	//}
-	//bodyDef.position.Set(translation.x * 100.0f, translation.y * 100.0f);
-
-	//physicsBody = (*world).CreateBody(&bodyDef);
-
-	///*Physics Stuff End*/
-
 	dirty = true;
 
 }
 
 Entity::~Entity()
 {
+	//if (nullptr != pbody) {
+	//	delete pbody;
+	//}
+}
+
+void Entity::AddPhysicsBody(b2World * _world, bool _isDynamic)
+{
+	this->pbody = new PhysicsObject(_world, _isDynamic, this->translation.x, this->translation.y, this->scaling.x, this->scaling.y);
 }
 
 void Entity::MoveRight(float factor)

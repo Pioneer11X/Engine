@@ -14,9 +14,6 @@
 #include <GL/glew.h>
 #endif // !GLEW_STATIC
 
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-
 #include "Shader.h"
 
 #include <string>
@@ -68,8 +65,11 @@ public:
 		
 		std::ifstream obj(_fileName);
 
-		if (!obj.is_open())
+		if (!obj.is_open()) {
+			std::cout << "Error opening " << _fileName << ". " << std::endl;
 			return;
+		}
+			
 
 		std::vector<vec3> positions;
 		std::vector<vec3> normals;
